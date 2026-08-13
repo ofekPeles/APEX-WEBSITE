@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>האתגר | CITY FORWARD · APEX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background-color: #f3efe9; color: #1a1a19; overflow-x: hidden; }
+  a { color: #1a1a19; text-decoration: none; }
+  a:hover { color: #ff6b00; }
+
+  .mixed-term { display: inline; white-space: nowrap; unicode-bidi: isolate; }
+  .latin-term { font-family: 'Montserrat', sans-serif; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+
+  /* shared header/footer (same classes/rules as homepage) */
+  .navlink { color:#c9c5c2; transition: color .18s; }
+  .navlink:hover { color:#ff6b00; }
+  .navlink.active { color:#ff6b00; }
+  #siteNav { box-shadow: none; transition: box-shadow .25s; }
+  #siteNav.nav-scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .nav-cta-group { display:flex; align-items:center; gap:12px; }
+  .nav-volunteer { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:14px; font-weight:700; padding:9px 22px; border:1px solid #f1efed; color:#f1efed; background:transparent; cursor:pointer; white-space:nowrap; transition:background .18s, color .18s; }
+  .nav-volunteer:hover { background:#f1efed; color:#131313; }
+  .btn-primary { background:#ff6b00; color:#572000; transition: background .18s; white-space:nowrap; }
+  .btn-primary:hover { background:#e66000; }
+  .ftlink { color:#c9c5c2; transition: color .18s; }
+  .ftlink:hover { color:#f1efed; }
+  .nav-toggle { display:none; }
+  #mobileMenu { display:none; }
+  #mobileMenu.open { display:flex; }
+  .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 24px; }
+
+  /* challenge-page scoped */
+  .challenge-page { --city-forward-surface:#F7F4EF; }
+  #city-forward-theme-intro { background-color:#FFFFFF; padding:80px 0 92px; }
+  .city-forward-theme-container { max-width:920px; margin:0 auto; padding:0 clamp(24px,4vw,32px); text-align:right; }
+  .city-forward-theme-eyebrow { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:13px; font-weight:600; color:#c1521a; margin:0 0 14px; }
+  .city-forward-theme-title { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(28px,3.2vw,40px); line-height:1.18; margin:0 0 24px; max-width:760px; }
+  .city-forward-theme-description { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:18px; line-height:1.7; color:#4a463f; margin:0; max-width:720px; }
+  #city-forward-hero { position:relative !important; width:100% !important; min-height:540px !important; overflow:hidden !important; isolation:isolate !important; background:#f7f4ef !important; }
+  #city-forward-hero-bg { position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; max-width:none !important; max-height:none !important; margin:0 !important; padding:0 !important; object-fit:cover !important; object-position:center center !important; display:block !important; z-index:0 !important; pointer-events:none !important; }
+  #city-forward-hero-overlay { position:absolute !important; inset:0 !important; z-index:1 !important; pointer-events:none !important; background:linear-gradient(90deg, rgba(248,245,240,0.98) 0%, rgba(248,245,240,0.92) 28%, rgba(248,245,240,0.52) 48%, rgba(248,245,240,0.05) 72%) !important; }
+  #city-forward-hero-content { position:absolute !important; z-index:2 !important; left:clamp(56px,6vw,96px) !important; top:50% !important; transform:translateY(-48%) !important; width:600px !important; max-width:calc(100% - 112px) !important; display:flex !important; flex-direction:column !important; align-items:flex-end !important; text-align:right !important; direction:rtl !important; margin:0 !important; padding:0 !important; }
+  #city-forward-eyebrow { margin:0 0 34px 0 !important; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:15px !important; font-weight:700 !important; color:#b65322 !important; align-self:flex-end !important; }
+  #city-forward-accessible-title { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
+  #city-forward-season-logo { position:relative !important; display:block !important; width:auto !important; height:145px !important; max-width:370px !important; max-height:145px !important; min-width:0 !important; margin:0 !important; padding:0 !important; object-fit:contain !important; object-position:right center !important; transform:none !important; opacity:1 !important; z-index:2 !important; align-self:flex-end !important; }
+  #city-forward-hero-copy { width:560px !important; max-width:100% !important; margin:26px 0 0 0 !important; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:17px !important; line-height:1.65 !important; font-weight:400 !important; color:#343434 !important; text-align:right !important; align-self:flex-end !important; }
+  #city-forward-hero-cta { margin:20px 0 0 0 !important; min-height:48px !important; width:auto !important; padding:0 26px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; gap:14px !important; align-self:flex-end !important; background:#e86f25 !important; color:#2b211b !important; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:16px !important; font-weight:700 !important; text-decoration:none !important; transform:none !important; box-shadow:0 6px 16px rgba(232,111,37,0.24) !important; transition:background .18s; }
+  #city-forward-hero-cta:hover { background:#d5631d !important; color:#2b211b !important; }
+  #city-forward-hero-cta svg { transition:transform .18s; }
+  #city-forward-hero-cta:hover svg { transform:translateX(-4px); }
+  .challenge-page .cta-btn { display:inline-flex; align-items:center; gap:12px; padding:14px 28px; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:16px; font-weight:700; border:none; cursor:pointer; background:#ff6b00; color:#572000; transition:background .18s; box-shadow:0 6px 16px rgba(255,107,0,0.22); }
+  .challenge-page .cta-btn:hover { background:#e66000; color:#572000; }
+  .challenge-page .cta-btn svg { transition: transform .18s; }
+  .challenge-page .cta-btn:hover svg { transform: translateX(-4px); }
+  .challenge-page #resources { background:#FFFFFF !important; padding:72px 0 88px; }
+  .challenge-page .cf-res-container { width:min(1280px, calc(100% - 96px)); margin:0 auto; direction:rtl; }
+  .challenge-page .cf-res-layout { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; align-items:start; }
+  .challenge-page .cf-group-head { display:flex; align-items:baseline; justify-content:flex-start; gap:12px; margin:0 0 16px; padding:0 0 12px; border-bottom:1px solid #E7E3DD; }
+  .challenge-page .cf-group-num { font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:#C65B28; }
+  .challenge-page .cf-group-title { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:20px; line-height:1.25; font-weight:700; color:#1B1B1B; margin:0; }
+  .challenge-page .cf-card-grid { display:grid; grid-template-columns:1fr; gap:14px; }
+  .challenge-page .doc-card { display:flex; align-items:flex-start; gap:14px; min-height:146px; padding:18px; background:#fff; border:1px solid #E5E1DB; border-inline-start:3px solid #ff6b00; border-radius:8px; text-align:right; transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+  .challenge-page a.doc-card:hover { transform:translateY(-1px); border-color:#D6CFC6; border-inline-start-color:#ff6b00; box-shadow:0 6px 16px rgba(25,22,18,0.06); }
+  .challenge-page .doc-card:focus-visible { outline:2px solid #ff6b00; outline-offset:2px; }
+  .challenge-page .doc-desc { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:13px; font-weight:400; color:#68625D; line-height:1.5; margin-top:2px; }
+  .challenge-page .doc-end { flex-shrink:0; align-self:center; width:64px; display:flex; align-items:center; justify-content:flex-start; }
+  .challenge-page .doc-icon { flex-shrink:0; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:#f6f3ee; border-radius:8px; color:#C65B28; margin-top:2px; }
+  .challenge-page .doc-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+  .challenge-page .doc-tag { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:11px; font-weight:700; color:#C65B28; line-height:1.1; }
+  .challenge-page .doc-title { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:16px; font-weight:700; color:#171717; line-height:1.3; }
+  .challenge-page .doc-arrow { color:#9a938c; display:flex; transition:transform .16s ease, color .16s ease; }
+  .challenge-page .doc-card:hover .doc-arrow { color:#C65B28; transform:translateX(-3px); }
+  .challenge-page .doc-accent { }
+  .challenge-page .cf-grouplink { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:14px; font-weight:700; color:#c1521a; }
+  .challenge-page .cf-grouplink:hover { color:#ff6b00; }
+  .challenge-page .cf-grouplink svg { transition:transform .16s ease; }
+  .challenge-page .cf-grouplink:hover svg { transform:translateX(-3px); }
+
+  /* reveal motion */
+  @keyframes cfRise { from { transform:translateY(20px); } to { transform:none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .challenge-page .reveal { animation: cfRise .7s cubic-bezier(.22,.61,.36,1) both; }
+    #city-forward-hero-content .cf-anim { animation: cfRise .8s cubic-bezier(.22,.61,.36,1) both; }
+  }
+
+  @media (max-width: 1024px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .challenge-page .cf-res-container { width:min(100% - 64px, 920px); }
+    .challenge-page .cf-res-layout { grid-template-columns:1fr; gap:40px; }
+    #city-forward-hero { min-height:520px !important; }
+    #city-forward-hero-content { left:40px !important; width:520px !important; max-width:calc(100% - 80px) !important; }
+    #city-forward-season-logo { height:125px !important; max-width:330px !important; max-height:125px !important; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .nav-desktop-cta { display:none !important; }
+    .nav-toggle { display:inline-flex; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start !important; gap: 16px; }
+    .challenge-page #resources { padding:54px 0 64px; }
+    .challenge-page .cf-res-container { width:calc(100% - 40px); }
+    .challenge-page .cf-res-layout { gap:30px; }
+    #city-forward-hero { min-height:500px !important; }
+    #city-forward-hero-bg { object-position:62% center !important; }
+    #city-forward-hero-overlay { background:linear-gradient(90deg, rgba(248,245,240,0.98) 0%, rgba(248,245,240,0.92) 65%, rgba(248,245,240,0.45) 100%) !important; }
+    #city-forward-hero-content { position:relative !important; left:auto !important; top:auto !important; transform:none !important; width:auto !important; max-width:none !important; padding:80px 24px 60px !important; }
+    #city-forward-season-logo { width:auto !important; height:108px !important; max-width:min(280px, calc(100vw - 48px)) !important; max-height:108px !important; }
+    #city-forward-hero-copy { width:100% !important; max-width:none !important; font-size:16px !important; }
+  }
+</style>
+</head>
+<body>
+<div class="challenge-page" dir="rtl" lang="he" style="font-family:'IBM Plex Sans Hebrew',sans-serif;background:#f3efe9;color:#1a1a19;min-height:100vh;position:relative;">
+
+  <nav id="siteNav" style="position:fixed;top:0;right:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(16px,3vw,24px);background:rgba(19,19,19,0.9);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid #5a4136;">
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="index.html" aria-label="APEX — לדף הבית"><img src="apex-logo.png" alt="APEX" style="height:38px;width:auto;display:block;"></a>
+      <div class="nav-links" style="display:flex;gap:26px;">
+        <a class="navlink" href="index.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">מסך הבית</a>
+        <a class="navlink active" aria-current="page" href="#top" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">אתגר העונה</a>
+        <a class="navlink" href="poc-arena.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></a>
+      </div>
+    </div>
+    <div class="nav-cta-group nav-desktop-cta">
+      <a class="nav-volunteer" href="volunteer.html">התנדבות ב<span class="mixed-term">־<span class="latin-term">APEX</span></span></a>
+      <button class="btn-primary" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:700;padding:10px 24px;border:none;cursor:pointer;">הקימו נבחרת</button>
+    </div>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="תפריט" style="width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid #5a4136;color:#f1efed;cursor:pointer;padding:0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" role="dialog" aria-label="תפריט ניווט" style="position:fixed;top:67px;right:0;width:100%;z-index:49;flex-direction:column;gap:4px;background:#0e0e0e;border-bottom:1px solid #5a4136;padding:16px clamp(20px,4vw,24px) 24px;">
+    <a class="navlink mm-link" href="index.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">מסך הבית</a>
+    <a class="navlink mm-link active" aria-current="page" href="#top" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">אתגר העונה</a>
+    <a class="navlink mm-link" href="poc-arena.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></a>
+    <button class="btn-primary mm-link" style="margin-top:16px;font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;font-weight:700;padding:14px 24px;border:none;cursor:pointer;">הקימו נבחרת</button>
+    <a class="navlink mm-link nav-volunteer" href="volunteer.html" style="margin-top:10px;text-align:center;font-size:16px;">התנדבות ב<span class="mixed-term">־<span class="latin-term">APEX</span></span></a>
+  </div>
+
+  <main id="top" style="margin-top:67px;position:relative;z-index:2;">
+
+    <!-- HERO -->
+    <section id="city-forward-hero">
+      <img id="city-forward-hero-bg" src="assets/images/cf-hero-map.png" alt="" aria-hidden="true">
+      <div id="city-forward-hero-overlay"></div>
+      <div id="city-forward-hero-content">
+        <div id="city-forward-eyebrow" class="cf-anim">נושא העונה · <span class="latin-term">2026–2027</span></div>
+        <h1 id="city-forward-accessible-title"><span class="latin-term">CITY FORWARD</span> — נושא עונת APEX</h1>
+        <img id="city-forward-season-logo" class="cf-anim" style="transition-delay:.12s;" src="assets/images/cf-logo.png" alt="CITY FORWARD — נושא עונת APEX" dir="ltr">
+        <p id="city-forward-hero-copy" class="cf-anim" style="transition-delay:.24s;">בעונת <span class="latin-term" style="font-weight:700;">CITY FORWARD</span> העיר הופכת למגרש הפתרונות. הנבחרות יזהו צורך אמיתי שאנשים חווים במרחב העירוני, יחקרו אותו לעומק ויבנו סביבו מיזם עובד בעזרת כלי <span class="latin-term" style="font-weight:700;">AI</span>. המטרה אינה להציג רעיון בלבד, אלא להוכיח שהפתרון נותן מענה ברור ויכול ליצור שינוי ממשי בעיר.</p>
+        <a id="city-forward-hero-cta" class="cf-anim" style="transition-delay:.36s;" href="#resources">
+          <span>למסמכי העונה</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div class="cf-res-container">
+        <div class="reveal" style="text-align:right;margin-bottom:48px;max-width:680px;">
+          <h2 style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-weight:700;font-size:clamp(34px,3.8vw,48px);line-height:1.1;color:#171717;margin:0;">כל מה שצריך לעונת <span class="latin-term" style="font-weight:700;">CITY FORWARD</span></h2>
+          <p style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:18px;line-height:1.6;color:#55514D;margin:16px 0 0;">חוברות העבודה, מדריכי התחרות והמחוונים הרשמיים במקום אחד.</p>
+        </div>
+
+        <div class="cf-res-layout">
+          <!-- GROUP 01 -->
+          <section class="cf-group cf-g01 reveal">
+            <div class="cf-group-head"><span class="cf-group-num">01</span><h3 class="cf-group-title">מתחילים את העונה</h3></div>
+            <div class="cf-card-grid">
+              <!-- TODO: replace href="#" with the real "חוברת המשימה" PDF URL -->
+              <a class="doc-card doc-accent" style="border-inline-start-color:#ff6b00;" href="assets/documents/apex-mission-booklet.pdf" target="_blank" rel="noopener noreferrer" aria-label="פתיחת חוברת המשימה (נפתח בלשונית חדשה)">
+                <span class="doc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg></span>
+                <span class="doc-main"><span class="doc-tag">חוברת</span><span class="doc-title">חוברת המשימה</span><span class="doc-desc">תוכנית העבודה המלאה של הנבחרת לאורך העונה.</span></span>
+                <span class="doc-end"><span class="doc-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span></span>
+              </a>
+            </div>
+          </section>
+
+          <!-- GROUP 02 -->
+          <section class="cf-group cf-g02 reveal" style="transition-delay:.1s;">
+            <div class="cf-group-head"><span class="cf-group-num">02</span><h3 class="cf-group-title">זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></h3></div>
+            <div class="cf-card-grid">
+              <!-- TODO: replace href="#" with the real "מדריך זירת ה־POC" PDF URL -->
+              <a class="doc-card doc-accent" href="assets/documents/apex-poc-arena-guide.pdf" target="_blank" rel="noopener noreferrer" aria-label="פתיחת מדריך זירת ה־POC (נפתח בלשונית חדשה)">
+                <span class="doc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg></span>
+                <span class="doc-main"><span class="doc-tag">מדריך</span><span class="doc-title">מדריך זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></span><span class="doc-desc">מבנה הזירה, מהלך ההרצה וכללי ההפעלה בגמר.</span></span>
+                <span class="doc-end"><span class="doc-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span></span>
+              </a>
+              <!-- TODO: replace href="#" with the real "מחוון זירת ה־POC" PDF URL -->
+              <a class="doc-card doc-accent" href="assets/documents/apex-poc-rubric.pdf" target="_blank" rel="noopener noreferrer" aria-label="פתיחת מחוון זירת ה־POC (נפתח בלשונית חדשה)">
+                <span class="doc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"></rect><path d="M8.5 8l1 1 2-2M8.5 13l1 1 2-2"></path><path d="M14 8h2.5M14 13h2.5M8.5 17.5h8"></path></svg></span>
+                <span class="doc-main"><span class="doc-tag">מחוון</span><span class="doc-title">מחוון זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></span><span class="doc-desc">המסמך שלפיו מתועדת ונמדדת ההרצה החיה.</span></span>
+                <span class="doc-end"><span class="doc-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span></span>
+              </a>
+            </div>
+          </section>
+          <section class="cf-group cf-g03 reveal" style="transition-delay:.2s;">
+            <div class="cf-group-head"><span class="cf-group-num">03</span><h3 class="cf-group-title">חדר השיפוט</h3></div>
+            <div class="cf-card-grid">
+              <!-- TODO: replace href="#" with the real "מדריך חדר השיפוט" PDF URL -->
+              <a class="doc-card doc-accent" href="assets/documents/apex-judging-room-guide.pdf" target="_blank" rel="noopener noreferrer" aria-label="פתיחת מדריך חדר השיפוט (נפתח בלשונית חדשה)">
+                <span class="doc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg></span>
+                <span class="doc-main"><span class="doc-tag">מדריך</span><span class="doc-title">מדריך חדר השיפוט</span><span class="doc-desc">מבנה המפגש, זמני ההצגה ומה נבחן בכל ציר.</span></span>
+                <span class="doc-end"><span class="doc-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span></span>
+              </a>
+              <!-- TODO: replace href="#" with the single combined judging-rubrics PDF (research + product + community) -->
+              <a class="doc-card doc-accent" href="assets/documents/apex-judging-rubrics.pdf" target="_blank" rel="noopener noreferrer" aria-label="פתיחת מחווני השיפוט — מחקר, מוצר וקהילה (נפתח בלשונית חדשה)">
+                <span class="doc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"></rect><path d="M8.5 8l1 1 2-2M8.5 13l1 1 2-2"></path><path d="M14 8h2.5M14 13h2.5M8.5 17.5h8"></path></svg></span>
+                <span class="doc-main"><span class="doc-tag">מחוונים</span><span class="doc-title">מחווני השיפוט</span><span class="doc-desc">מחווני המחקר, המוצר והקהילה במסמך אחד.</span></span>
+                <span class="doc-end"><span class="doc-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span></span>
+              </a>
+            </div>
+          </section>
+        </div>        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (same as homepage) -->
+  <footer style="width:100%;padding:clamp(72px,10vw,120px) clamp(24px,4vw,24px);border-top:1px solid #5a4136;background:#0e0e0e;position:relative;z-index:2;color:#f1efed;">
+    <div class="footer-grid" style="margin-bottom:64px;">
+      <div style="text-align:right;">
+        <a href="index.html" aria-label="APEX — לדף הבית"><img src="apex-logo.png" alt="APEX" style="height:40px;width:auto;display:block;margin-bottom:24px;"></a>
+        <p style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;line-height:1.6;color:#c9c5c2;margin:0;max-width:420px;"><span class="latin-term" style="font-weight:700;">APEX</span> — תחרות הסטארטאפ הארצית לנוער. מקדמים את הדור הבא של יזמים באמצעות התנסות מעשית ושימוש חכם ב<span class="mixed-term">־<span class="latin-term" style="font-weight:700;">AI</span></span>.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">קישורים</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">מדיניות פרטיות</a>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">תנאי שימוש</a>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">יצירת קשר</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">חומרים</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">ערכת מדיה</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">עקבו אחרינו</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;"><span class="latin-term">@apexchallenge</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top:1px solid #5a4136;padding-top:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;">
+      <p style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;color:#c9c5c2;margin:0;">© 2026 <span class="latin-term" style="font-weight:700;">APEX</span>. כל הזכויות שמורות.</p>
+    </div>
+  </footer>
+
+</div>
+<script>
+
+class Component {
+  componentDidMount() {
+    const nav = document.getElementById('siteNav');
+    this._onScroll = () => { if (nav) nav.classList.toggle('nav-scrolled', window.scrollY > 20); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if (toggle && menu) {
+      const close = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.focus(); };
+      const open = () => { menu.classList.add('open'); toggle.setAttribute('aria-expanded','true'); };
+      this._toggleClick = () => { menu.classList.contains('open') ? close() : open(); };
+      toggle.addEventListener('click', this._toggleClick);
+      this._onKey = (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) close(); };
+      document.addEventListener('keydown', this._onKey);
+      this._linkClose = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); };
+      menu.querySelectorAll('.mm-link').forEach((el) => el.addEventListener('click', this._linkClose));
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('keydown', this._onKey);
+  }
+  renderVals() { return {}; }
+}
+
+document.addEventListener("DOMContentLoaded",function(){try{var __c=new Component();if(__c.componentDidMount)__c.componentDidMount();}catch(e){console.error("init",e);}});
+</script>
+</body>
+</html>

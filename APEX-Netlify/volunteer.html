@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>התנדבות | APEX</title>
+<meta name="description" content="אנשי ונשות מקצוע מעולמות היזמות, הטכנולוגיה, המוצר והעסקים לוקחים חלק ב־APEX — מייעוץ מקצועי ממוקד ועד השתתפות בגמר התחרות.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background-color: #131313; color: #f1efed; overflow-x: hidden; }
+  a { color: #c9c5c2; text-decoration: none; }
+  a:hover { color: #ff6b00; }
+
+  .mixed-term { display: inline; white-space: nowrap; unicode-bidi: isolate; }
+  .latin-term { font-family: 'Montserrat', sans-serif; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+  .latin-display { font-family: 'Montserrat', sans-serif; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+
+  .navlink { color:#c9c5c2; transition: color .18s; }
+  .navlink:hover { color:#ff6b00; }
+  .navlink.active { color:#ff6b00; }
+  #siteNav { box-shadow: none; transition: box-shadow .25s; }
+  #siteNav.nav-scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .nav-cta-group { display:flex; align-items:center; gap:12px; }
+  .nav-volunteer { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:14px; font-weight:700; padding:9px 22px; border:1px solid #f1efed; color:#f1efed; background:transparent; cursor:pointer; white-space:nowrap; transition:background .18s, color .18s; }
+  .nav-volunteer:hover { background:#f1efed; color:#131313; }
+  .nav-volunteer.active { border-color:#ff6b00; color:#ff6b00; }
+  .nav-volunteer.active:hover { background:#ff6b00; color:#131313; }
+  .btn-primary { background:#ff6b00; color:#572000; transition: background .18s; white-space:nowrap; }
+  .btn-primary:hover { background:#e66000; }
+  .ftlink { color:#c9c5c2; transition: color .18s; }
+  .ftlink:hover { color:#f1efed; }
+  .nav-toggle { display:none; }
+  #mobileMenu { display:none; }
+  #mobileMenu.open { display:flex; }
+  .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 24px; }
+
+  .diagonal-bg {
+    background-image: linear-gradient(135deg, #1f2020 25%, transparent 25%, transparent 50%, #1f2020 50%, #1f2020 75%, transparent 75%, transparent);
+    background-size: 40px 40px; opacity: 0.035;
+  }
+
+  /* ===== volunteer page ===== */
+  .vol-page .vcontainer { width:min(1280px, calc(100% - 96px)); margin:0 auto; }
+  .vol-page .eyebrow { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:13px; font-weight:600; color:#d9782e; margin:0 0 16px; display:flex; align-items:center; gap:10px; }
+  .vol-page .eyebrow .ln { flex:0 0 28px; height:1px; background:#d9782e; opacity:.7; }
+
+  .vol-hero { position:relative; border-bottom:1px solid #5a4136; overflow:hidden; }
+  .vol-hero-grid { display:grid; grid-template-columns:47% 53%; gap:clamp(32px,5vw,64px); align-items:center; min-height:clamp(460px,64vh,600px); padding:clamp(48px,7vw,80px) 0; }
+  .vol-hero-copy { text-align:right; }
+  .vol-hero h1 { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(40px,5vw,64px); line-height:1.08; margin:0 0 24px; }
+  .vol-hero-lead { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:18px; line-height:1.65; color:#c9c5c2; max-width:600px; margin:0 0 36px; }
+  .vol-hero-media { position:relative; border:1px solid #5a4136; overflow:hidden; aspect-ratio:4/3; }
+  .vol-hero-media image-slot { width:100%; height:100%; filter:grayscale(1) contrast(1.05); }
+  .vol-cta-row { display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+  .vol-note { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:14px; color:#8f8a86; margin:0; }
+
+  .vol-light { background:#F3EFE9; color:#1A1A19; padding:clamp(64px,8vw,104px) 0; }
+  .vol-light .eyebrow { color:#c1521a; }
+  .vol-sec-head { text-align:right; max-width:720px; margin:0 0 56px; }
+  .vol-sec-head h2 { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(32px,4vw,48px); line-height:1.14; margin:0 0 16px; color:#171717; }
+  .vol-sec-head p { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:17px; line-height:1.6; color:#55514D; margin:0; }
+  .vol-two { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .vol-card { border:1px solid #d8d2c8; background:#fff; padding:clamp(28px,3vw,40px); text-align:right; display:flex; flex-direction:column; }
+  .vol-card .cnum { font-family:'Montserrat',sans-serif; font-size:14px; font-weight:700; color:#c1521a; margin:0 0 24px; }
+  .vol-card h3 { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(24px,2.4vw,30px); line-height:1.2; margin:0 0 10px; color:#171717; }
+  .vol-card .csub { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:17px; font-weight:600; color:#3f3b35; margin:0 0 20px; }
+  .vol-card .cbody { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:16px; line-height:1.65; color:#55514D; margin:0 0 24px; }
+  .vol-explab { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:13px; font-weight:600; color:#8a847e; margin:0 0 10px; }
+  .vol-tags { display:flex; align-items:center; flex-wrap:wrap; gap:0 16px; margin-top:auto; }
+  .vol-tag { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:15px; font-weight:600; color:#3f3b35; }
+  .vol-tagsep { color:#ff6b00; font-weight:400; }
+  .vol-callout { border-inline-start:3px solid #ff6b00; background:#faf6f0; padding:18px 20px; margin-top:auto; }
+  .vol-callout .clab { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:15px; font-weight:700; color:#c1521a; margin:0 0 8px; }
+  .vol-callout .ctxt { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:15px; line-height:1.6; color:#55514D; margin:0; }
+
+  .vol-exp { background:#131313; padding:clamp(64px,8vw,104px) 0; border-bottom:1px solid #5a4136; }
+  .vol-exp-grid { display:grid; grid-template-columns:40% 60%; gap:clamp(32px,5vw,64px); align-items:center; }
+  .vol-exp h2 { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(30px,3.6vw,46px); line-height:1.15; margin:0 0 20px; text-align:right; }
+  .vol-exp p { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:17px; line-height:1.65; color:#c9c5c2; margin:0; text-align:right; }
+  .vol-areas { display:grid; grid-template-columns:repeat(6, 1fr); align-items:baseline; }
+  .vol-area { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:clamp(15px,1.5vw,18px); font-weight:700; color:#f1efed; text-align:center; position:relative; white-space:nowrap; }
+  .vol-area .sl { position:absolute; inset-inline-start:0; color:#ff6b00; font-weight:400; }
+
+  .vol-final { background:#0e0e0e; padding:90px 0; }
+  .vol-final-inner { max-width:900px; margin:0 auto; padding-inline:32px; text-align:center; }
+  .vol-final .eyebrow { justify-content:center; color:#ff6b00; font-size:19px; font-weight:600; margin-bottom:22px; }
+  .vol-final h2 { font-family:'IBM Plex Sans Hebrew',sans-serif; font-weight:700; font-size:clamp(38px,4.4vw,68px); line-height:1.05; margin:0; }
+  .vol-final p { font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:clamp(19px,1.6vw,26px); font-weight:400; line-height:1.55; color:#c9c5c2; margin:34px auto 0; max-width:720px; }
+  .vol-final .vol-final-btn { margin-top:42px; }
+  .vol-final-meta { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:12px; direction:rtl; font-family:'IBM Plex Sans Hebrew',sans-serif; font-size:clamp(16px,1.4vw,21px); font-weight:400; color:#8f8a86; margin:22px 0 0; }
+  .vol-final-meta .sep { color:#5a4136; }
+
+  @keyframes volRise { from { transform:translateY(22px); } to { transform:none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .vol-page .reveal { animation: volRise .7s cubic-bezier(.22,.61,.36,1) both; }
+  }
+
+  @media (max-width: 1024px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .vol-page .vcontainer { width:min(100% - 64px, 920px); }
+    .vol-hero-grid { grid-template-columns:1fr; }
+    .vol-hero-media { order:-1; }
+    .vol-exp-grid { grid-template-columns:1fr; gap:32px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .nav-desktop-cta { display:none !important; }
+    .nav-toggle { display:inline-flex; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start !important; gap: 16px; }
+    .vol-page .vcontainer { width:calc(100% - 40px); }
+    .vol-two { grid-template-columns:1fr; }
+    .vol-areas { grid-template-columns:repeat(3,1fr); gap:20px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="vol-page" dir="rtl" lang="he" style="font-family:'IBM Plex Sans Hebrew',sans-serif;background:#131313;color:#f1efed;min-height:100vh;position:relative;">
+
+  <nav id="siteNav" style="position:fixed;top:0;right:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(16px,3vw,24px);background:rgba(19,19,19,0.9);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid #5a4136;">
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="index.html" aria-label="APEX — לדף הבית"><img src="apex-logo.png" alt="APEX" style="height:38px;width:auto;display:block;"></a>
+      <div class="nav-links" style="display:flex;gap:26px;">
+        <a class="navlink" href="index.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">מסך הבית</a>
+        <a class="navlink" href="challenge.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">אתגר העונה</a>
+        <a class="navlink" href="poc-arena.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:600;">זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></a>
+      </div>
+    </div>
+    <div class="nav-cta-group nav-desktop-cta">
+      <a class="nav-volunteer active" aria-current="page" href="volunteer.html">התנדבות ב<span class="mixed-term">־<span class="latin-term">APEX</span></span></a>
+      <button class="btn-primary" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:14px;font-weight:700;padding:10px 24px;border:none;cursor:pointer;">הקימו נבחרת</button>
+    </div>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="תפריט" style="width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid #5a4136;color:#f1efed;cursor:pointer;padding:0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" role="dialog" aria-label="תפריט ניווט" style="position:fixed;top:67px;right:0;width:100%;z-index:49;flex-direction:column;gap:4px;background:#0e0e0e;border-bottom:1px solid #5a4136;padding:16px clamp(20px,4vw,24px) 24px;">
+    <a class="navlink mm-link" href="index.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">מסך הבית</a>
+    <a class="navlink mm-link" href="challenge.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">אתגר העונה</a>
+    <a class="navlink mm-link" href="poc-arena.html" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:17px;font-weight:600;padding:12px 0;border-bottom:1px solid #2a2a2a;">זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></a>
+    <a class="navlink mm-link nav-volunteer active" aria-current="page" href="volunteer.html" style="margin-top:16px;text-align:center;font-size:16px;">התנדבות ב<span class="mixed-term">־<span class="latin-term">APEX</span></span></a>
+    <button class="btn-primary mm-link" style="margin-top:10px;font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;font-weight:700;padding:14px 24px;border:none;cursor:pointer;">הקימו נבחרת</button>
+  </div>
+
+  <main id="top" style="margin-top:67px;position:relative;z-index:2;">
+
+    <!-- HERO -->
+    <section class="vol-hero">
+      <div class="diagonal-bg" style="position:absolute;inset:0;z-index:0;pointer-events:none;"></div>
+      <div class="vcontainer" style="position:relative;z-index:1;">
+        <div class="vol-hero-grid">
+          <div class="vol-hero-copy reveal">
+            <p class="eyebrow"><span class="latin-term">APEX</span> · התנדבות מקצועית<span class="ln"></span></p>
+            <h1>יש לכם ניסיון ביזמות, טכנולוגיה או מוצר?<br>הצטרפו ל<span class="mixed-term">־<span class="latin-term">APEX</span></span>.</h1>
+            <p class="vol-hero-lead"><span class="latin-term" style="font-weight:700;">APEX</span> מזמינה אנשי ונשות מקצוע לקחת חלק באחת משתי דרכים: להשתלב בשיפוט בגמר התחרות, או להציע ייעוץ מקצועי נקודתי לנבחרות במהלך העונה — בהתאם לתחום המומחיות ולזמינות שלכם.</p>
+            <div class="vol-cta-row">
+              <!-- TODO: replace href="#" with the external volunteer registration form URL -->
+              <a class="btn-primary" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;font-weight:700;padding:16px 36px;">להרשמה להתנדבות</a>
+              <p class="vol-note">ייעוץ במהלך העונה אינו מחייב ליווי קבוע של נבחרת.</p>
+            </div>
+          </div>
+          <div class="vol-hero-media reveal" style="animation-delay:.1s;">
+            <img src="assets/images/apex-volunteer-hero.png" alt="איש מקצוע מנוסה עובד לצד צוות צעיר סביב אב־טיפוס טכנולוגי" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TWO WAYS -->
+    <section class="vol-light">
+      <div class="vcontainer">
+        <div class="vol-sec-head reveal">
+          <p class="eyebrow"><span class="ln" style="background:#c1521a;"></span>איך לוקחים חלק</p>
+          <h2>איך אפשר לקחת חלק?</h2>
+          <p>בחרו את אופי ההתנדבות שמתאים לניסיון ולזמינות שלכם.</p>
+        </div>
+        <div class="vol-two">
+          <div class="vol-card reveal">
+            <p class="cnum">01</p>
+            <h3>שיפוט בגמר <span class="latin-term">APEX</span></h3>
+            <p class="csub">להיות חלק מהרגע שבו העבודה של הנבחרות עומדת למבחן.</p>
+            <p class="cbody" style="margin-bottom:0;">בגמר <span class="latin-term" style="font-weight:700;">APEX</span> אנשי ונשות מקצוע משתלבים בשיפוט בחדר השיפוט ובזירת ה<span class="mixed-term">־<span class="latin-term" style="font-weight:700;">POC</span></span>, ופוגשים את הנבחרות לאחר חודשים של מחקר, פיתוח ובנייה. השיפוט מתבצע לפי מבנה ומחוונים ברורים, ומביא אל התחרות נקודת מבט מקצועית מהעולם האמיתי.</p>
+          </div>
+          <div class="vol-card reveal" style="animation-delay:.1s;">
+            <p class="cnum">02</p>
+            <h3>ייעוץ מקצועי נקודתי</h3>
+            <p class="csub">להיות הכתובת כשנבחרת נתקלת בשאלה בתחום שלכם.</p>
+            <p class="cbody">במהלך העונה נבחרות עשויות להזדקק לנקודת מבט מקצועית — להבין מגבלה טכנולוגית, לבחון החלטת מוצר, לקבל משוב או להתייעץ בנושא מקצועי מסוים. כשעולה צורך רלוונטי, <span class="latin-term" style="font-weight:700;">APEX</span> יכולה להציע חיבור לאיש או אשת מקצוע מהתחום המתאים.</p>
+            <div class="vol-callout">
+              <p class="clab">ללא התחייבות קבועה</p>
+              <p class="ctxt">הרישום אינו מחייב אתכם ללוות נבחרת. כל פנייה נעשית בהתאם לתחום המומחיות ולזמינות שלכם, ואתם בוחרים אם לקחת בה חלק.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="vol-exp">
+      <div class="vcontainer">
+        <div class="vol-exp-grid">
+          <div class="reveal">
+            <h2>איפה הניסיון שלכם יכול לעזור?</h2>
+            <p>לא נדרש ניסיון בכל התחומים. חיבור טוב מתחיל במומחיות אחת שרלוונטית בדיוק לשאלה שנבחרת מנסה לפתור.</p>
+          </div>
+          <div class="vol-areas reveal" style="animation-delay:.1s;">
+            <span class="vol-area">יזמות</span>
+            <span class="vol-area">טכנולוגיה<span class="sl">/</span></span>
+            <span class="vol-area">מוצר<span class="sl">/</span></span>
+            <span class="vol-area">הנדסה<span class="sl">/</span></span>
+            <span class="vol-area">מחקר<span class="sl">/</span></span>
+            <span class="vol-area">עסקים<span class="sl">/</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="vol-final">
+      <div class="vcontainer">
+        <div class="vol-final-inner reveal">
+          <h2>רוצים לקחת חלק?</h2>
+          <p>השאירו כמה פרטים על הרקע המקצועי שלכם, תחומי המומחיות ואופן ההתנדבות שמעניין אתכם. ניצור קשר כאשר יהיה חיבור מתאים.</p>
+          <!-- TODO: replace href="#" with the external volunteer registration form URL -->
+          <div class="vol-final-btn"><a class="btn-primary" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:22px;font-weight:700;padding:0 52px;height:64px;display:inline-flex;align-items:center;">להרשמה להתנדבות</a></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="width:100%;padding:clamp(72px,10vw,120px) clamp(24px,4vw,24px);border-top:1px solid #5a4136;background:#0e0e0e;position:relative;z-index:2;">
+    <div class="footer-grid" style="margin-bottom:64px;">
+      <div style="text-align:right;">
+        <a href="index.html" aria-label="APEX — לדף הבית"><img src="apex-logo.png" alt="APEX" style="height:40px;width:auto;display:block;margin-bottom:24px;"></a>
+        <p style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;line-height:1.6;color:#c9c5c2;margin:0;max-width:420px;"><span class="latin-term" style="font-weight:700;">APEX</span> — תחרות הסטארטאפ הארצית לנוער. מקדמים את הדור הבא של יזמים באמצעות התנסות מעשית ושימוש חכם ב<span class="mixed-term">־<span class="latin-term" style="font-weight:700;">AI</span></span>.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">קישורים</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">מדיניות פרטיות</a>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">תנאי שימוש</a>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">יצירת קשר</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">חומרים</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;">ערכת מדיה</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:right;">
+        <span style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:12px;font-weight:600;color:#c9c5c2;">עקבו אחרינו</span>
+        <a class="ftlink" href="#" style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;"><span class="latin-term">@apexchallenge</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top:1px solid #5a4136;padding-top:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;">
+      <p style="font-family:'IBM Plex Sans Hebrew',sans-serif;font-size:16px;color:#c9c5c2;margin:0;">© 2026 <span class="latin-term" style="font-weight:700;">APEX</span>. כל הזכויות שמורות.</p>
+    </div>
+  </footer>
+
+</div>
+<script>
+
+class Component {
+  componentDidMount() {
+    const nav = document.getElementById('siteNav');
+    this._onScroll = () => { if (nav) nav.classList.toggle('nav-scrolled', window.scrollY > 20); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if (toggle && menu) {
+      const close = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.focus(); };
+      const open = () => { menu.classList.add('open'); toggle.setAttribute('aria-expanded','true'); };
+      this._toggleClick = () => { menu.classList.contains('open') ? close() : open(); };
+      toggle.addEventListener('click', this._toggleClick);
+      this._onKey = (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) close(); };
+      document.addEventListener('keydown', this._onKey);
+      this._linkClose = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); };
+      menu.querySelectorAll('.mm-link').forEach((el) => el.addEventListener('click', this._linkClose));
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('keydown', this._onKey);
+  }
+  renderVals() { return {}; }
+}
+
+document.addEventListener("DOMContentLoaded",function(){try{var __c=new Component();if(__c.componentDidMount)__c.componentDidMount();}catch(e){console.error("init",e);}});
+</script>
+</body>
+</html>

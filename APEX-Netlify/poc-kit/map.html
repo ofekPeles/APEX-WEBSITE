@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מפת זירת ה־POC · APEX POC Kit</title>
+<link rel="stylesheet" href="apex-poc-kit.css">
+</head>
+<body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+  <a class="kb-brand" href="index.html" dir="ltr">APEX · POC Kit</a>
+  <div class="kb-steps" data-kb-steps></div>
+  <div class="kb-mobile-progress" data-kb-mobile></div>
+  <div class="kb-utils">
+    <span class="kb-save" data-kb-save style="opacity:.55">נשמר מקומית</span>
+    <button class="kb-util" data-kb-startover type="button">התחלה מחדש</button>
+  </div>
+</div></nav>
+
+<main class="kb-main">
+  <div class="kb-head">
+    <h1 class="kb-title">מפת זירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span></h1>
+    <p class="kb-sub">העלו את התמונה הסופית שתשמש אתכם כסביבת ההדגמה של המוצר בזירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span>.</p>
+  </div>
+
+  <div class="kb-grid">
+    <div>
+      <div class="kb-drop" id="drop" tabindex="0" role="button" aria-label="העלאת מפת הזירה">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path><path d="M12 15V3"></path><path d="M7 8l5-5 5 5"></path></svg>
+        <h3>גררו לכאן את מפת הזירה שלכם</h3>
+        <p><span class="latin-term">JPG · PNG · WEBP</span> · עד <span class="latin-term">15MB</span></p>
+      </div>
+      <div class="kb-panel" id="preview" style="display:none;">
+        <div class="kb-panel-head">
+          <h2 class="kb-panel-title">התאמת מפת הזירה</h2>
+        </div>
+        <div class="kb-panel-body">
+          <div id="cropwrap" style="position:relative;width:100%;aspect-ratio:4/3;background:#0e0e0e;overflow:hidden;border:1px solid var(--line);cursor:grab;touch-action:none;">
+            <canvas id="cropcanvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+          </div>
+          <p class="kb-hint" style="margin-top:10px;">גררו למיקום · השתמשו במחוון לתקריב. לוגו <span class="latin-term">APEX</span> ו<span class="mixed-term">־<span class="latin-term">CITY FORWARD</span></span> יופיעו בפינה בתחתית המפה.</p>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:14px;">
+            <span class="kb-label" style="margin:0;">תקריב</span>
+            <input type="range" id="zoom" min="1" max="3" step="0.01" value="1" style="flex:1;accent-color:#ff6b00;">
+            <button class="kb-btn kb-btn-ghost" id="reset" type="button" style="height:40px;padding:0 16px;">איפוס</button>
+          </div>
+          <div style="display:flex;gap:12px;justify-content:flex-start;margin-top:18px;">
+            <button class="kb-btn kb-btn-primary" id="replace" type="button">החלפת תמונה</button>
+            <button class="kb-btn kb-btn-ghost" id="remove" type="button">הסרת תמונה</button>
+          </div>
+        </div>
+      </div>
+      <p class="kb-err" id="err" style="display:none;"></p>
+      <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
+    </div>
+
+    <aside class="kb-side">
+      <h3>לפני שממשיכים</h3>
+      <div class="kb-side-item"><span class="kb-side-num">1</span><div><h4>מפה סופית</h4><p>השתמשו במפה הסופית שבה תשתמשו בזירה.</p></div></div>
+      <div class="kb-side-item"><span class="kb-side-num">2</span><div><h4>סביבה ברורה</h4><p>ודאו שסביבת ההדגמה ברורה לעין.</p></div></div>
+      <div class="kb-side-item"><span class="kb-side-num">3</span><div><h4>אזור פעולה</h4><p>ודאו שניתן להבין היכן המוצר פועל.</p></div></div>
+      <div class="kb-side-item"><span class="kb-side-num">4</span><div><h4>תוכן</h4><p>הסירו תוכן שאינו קשור להרצה לפני ההעלאה.</p></div></div>
+    </aside>
+  </div>
+</main>
+
+<div class="kb-foot"><div class="kb-foot-inner">
+  <a class="kb-btn kb-btn-ghost" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    חזרה לפרטי הנבחרת
+  </a>
+  <a class="kb-btn kb-btn-primary" id="continue" href="statement.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+    המשך למשפט המוצר
+  </a>
+</div></div>
+
+<div class="kb-modal" data-kb-modal><div class="kb-modal-box">
+  <h3>להתחיל מחדש?</h3>
+  <p>הפעולה תמחק את ערכת ה<span class="mixed-term">־<span class="latin-term">POC</span></span> שנשמרה בדפדפן הזה.</p>
+  <div class="kb-modal-actions">
+    <button class="kb-btn kb-btn-ghost" data-kb-cancel type="button">ביטול</button>
+    <button class="kb-btn kb-btn-primary" data-kb-confirm type="button">מחיקת הערכה</button>
+  </div>
+</div></div>
+
+<script src="apex-poc-kit.js"></script>
+<script>
+(function(){
+  const MAX = 15*1024*1024;
+  const drop=document.getElementById('drop'), file=document.getElementById('file'),
+        preview=document.getElementById('preview'), err=document.getElementById('err'),
+        cont=document.getElementById('continue');
+  const cropwrap=document.getElementById('cropwrap'), canvas=document.getElementById('cropcanvas'),
+        zoom=document.getElementById('zoom');
+  let curBlob=null, crop={zoom:1,ox:0.5,oy:0.5};
+  function fmtSize(b){ return b>=1048576 ? (b/1048576).toFixed(1)+' MB' : Math.round(b/1024)+' KB'; }
+  function setContinue(){
+    const ok = ApexKit.complete('map');
+    cont.style.pointerEvents = ok?'':'none'; cont.style.opacity = ok?'':'.5';
+    cont.setAttribute('aria-disabled', ok?'false':'true');
+  }
+  let renderPending=false;
+  async function renderPreview(){
+    if(!curBlob||renderPending) return; renderPending=true;
+    try{
+      const w=cropwrap.clientWidth||640;
+      const c=await ApexKit.renderFinalPocMap(curBlob, crop, {width:Math.round(w*2)});
+      const cx=canvas.getContext('2d'); canvas.width=c.width; canvas.height=c.height;
+      cx.drawImage(c,0,0);
+    }catch(e){ console.error('preview render',e); } finally{ renderPending=false; }
+  }
+  function saveCrop(){ ApexKit.save({mapCrop:{zoom:crop.zoom,ox:crop.ox,oy:crop.oy}}); }
+  function showEditor(blob, meta){
+    curBlob=blob;
+    drop.style.display='none'; preview.style.display='';
+    zoom.value=crop.zoom;
+    renderPreview();
+  }
+  // zoom
+  zoom.addEventListener('input',()=>{ crop.zoom=parseFloat(zoom.value); renderPreview(); saveCrop(); });
+  document.getElementById('reset').addEventListener('click',()=>{ crop={zoom:1,ox:0.5,oy:0.5}; zoom.value=1; renderPreview(); saveCrop(); });
+  // drag to pan
+  let dragging=false, lx=0, ly=0;
+  function down(e){ dragging=true; cropwrap.style.cursor='grabbing'; const p=e.touches?e.touches[0]:e; lx=p.clientX; ly=p.clientY; }
+  function move(e){ if(!dragging) return; const p=e.touches?e.touches[0]:e;
+    const dpx=(p.clientX-lx)/cropwrap.clientWidth, dpy=(p.clientY-ly)/cropwrap.clientHeight;
+    lx=p.clientX; ly=p.clientY;
+    // panning right should reveal left of image -> increase ox
+    crop.ox=Math.min(1,Math.max(0, crop.ox - dpx));
+    crop.oy=Math.min(1,Math.max(0, crop.oy - dpy));
+    renderPreview();
+  }
+  function up(){ if(dragging){ dragging=false; cropwrap.style.cursor='grab'; saveCrop(); } }
+  cropwrap.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+  cropwrap.addEventListener('touchstart',down,{passive:true}); cropwrap.addEventListener('touchmove',e=>{move(e);},{passive:true}); cropwrap.addEventListener('touchend',up);
+  window.addEventListener('resize',renderPreview);
+
+  function handle(f){
+    err.style.display='none';
+    if(!f) return;
+    if(!/image\/(jpeg|png|webp)/.test(f.type)){ err.textContent='פורמט לא נתמך. השתמשו ב־JPG, PNG או WEBP.'; err.style.display='flex'; return; }
+    if(f.size>MAX){ err.textContent='הקובץ גדול מדי. הגודל המרבי הוא 15MB.'; err.style.display='flex'; return; }
+    const url=URL.createObjectURL(f); const probe=new Image();
+    probe.onload=async function(){
+      const ext=(f.name.split('.').pop()||'jpg').toLowerCase();
+      const meta={name:f.name,size:f.size,type:f.type,ext:ext,width:probe.naturalWidth,height:probe.naturalHeight};
+      URL.revokeObjectURL(url);
+      crop={zoom:1,ox:0.5,oy:0.5};
+      await ApexKit.putMap(f); ApexKit.save({mapMeta:meta, mapCrop:crop});
+      showEditor(f, meta); setContinue(); ApexKit.renderShell('map');
+    };
+    probe.onerror=function(){ err.textContent='לא ניתן לקרוא את התמונה.'; err.style.display='flex'; };
+    probe.src=url;
+  }
+  drop.addEventListener('click',()=>file.click());
+  drop.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();file.click();} });
+  drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('drag');});
+  drop.addEventListener('dragleave',()=>drop.classList.remove('drag'));
+  drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('drag');handle(e.dataTransfer.files[0]);});
+  file.addEventListener('change',e=>handle(e.target.files[0]));
+  document.getElementById('replace').addEventListener('click',()=>file.click());
+  document.getElementById('remove').addEventListener('click',async()=>{
+    await ApexKit.delMap(); ApexKit.save({mapMeta:null, mapCrop:null});
+    curBlob=null; preview.style.display='none'; drop.style.display=''; file.value='';
+    setContinue(); ApexKit.renderShell('map');
+  });
+  (async function(){
+    const s=ApexKit.get();
+    if(s.mapCrop) crop=Object.assign(crop, s.mapCrop);
+    if(s.mapMeta){ const blob=await ApexKit.getMap(); if(blob) showEditor(blob, s.mapMeta); else ApexKit.save({mapMeta:null}); }
+    setContinue(); ApexKit.renderShell('map');
+  })();
+})();
+</script>
+</body>
+</html>

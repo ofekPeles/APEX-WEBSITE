@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרטי הנבחרת · APEX POC Kit</title>
+<link rel="stylesheet" href="apex-poc-kit.css">
+</head>
+<body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+  <a class="kb-brand" href="index.html" dir="ltr">APEX · POC Kit</a>
+  <div class="kb-steps" data-kb-steps></div>
+  <div class="kb-mobile-progress" data-kb-mobile></div>
+  <div class="kb-utils">
+    <span class="kb-save" data-kb-save style="opacity:.55">נשמר מקומית</span>
+    <button class="kb-util" data-kb-startover type="button">התחלה מחדש</button>
+  </div>
+</div></nav>
+
+<main class="kb-main kb-narrow">
+  <div class="kb-head">
+    <h1 class="kb-title">פרטי הנבחרת</h1>
+    <p class="kb-sub">הוסיפו את הפרטים שישמשו לזיהוי ערכת ה<span class="mixed-term">־<span class="latin-term">POC</span></span> שלכם.</p>
+  </div>
+
+  <div class="kb-field">
+    <label class="kb-label" for="team-name">שם הנבחרת</label>
+    <input class="kb-input" id="team-name" type="text" placeholder="SolarScope" autocomplete="off" style="text-align:right;">
+  </div>
+  <div class="kb-field">
+    <label class="kb-label" for="team-number">מספר הנבחרת</label>
+    <input class="kb-input" id="team-number" type="text" placeholder="07" autocomplete="off" dir="ltr" style="text-align:right;">
+  </div>
+  <div class="kb-preview">
+    <span class="caps">שם קובץ הערכה</span>
+    <span class="val" id="fn-preview" dir="ltr">APEX_POC_Team_07_SolarScope.zip</span>
+  </div>
+</main>
+
+<div class="kb-foot"><div class="kb-foot-inner end">
+  <a class="kb-btn kb-btn-primary" id="continue" href="map.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+    המשך למפת הזירה
+  </a>
+</div></div>
+
+<div class="kb-modal" data-kb-modal><div class="kb-modal-box">
+  <h3>להתחיל מחדש?</h3>
+  <p>הפעולה תמחק את ערכת ה<span class="mixed-term">־<span class="latin-term">POC</span></span> שנשמרה בדפדפן הזה.</p>
+  <div class="kb-modal-actions">
+    <button class="kb-btn kb-btn-ghost" data-kb-cancel type="button">ביטול</button>
+    <button class="kb-btn kb-btn-primary" data-kb-confirm type="button">מחיקת הערכה</button>
+  </div>
+</div></div>
+
+<script src="apex-poc-kit.js"></script>
+<script>
+(function(){
+  const s = ApexKit.get();
+  const name = document.getElementById('team-name');
+  const num = document.getElementById('team-number');
+  const prev = document.getElementById('fn-preview');
+  const cont = document.getElementById('continue');
+  name.value = s.teamName; num.value = s.teamNumber;
+  function sync(){
+    ApexKit.save({teamName:name.value, teamNumber:num.value});
+    prev.textContent = 'APEX_POC_Team_'+(num.value.trim()||'07')+'_'+(name.value.trim()||'SolarScope').replace(/[^A-Za-z0-9_-]+/g,'')+'.zip';
+    const ok = ApexKit.complete('team', ApexKit.get());
+    cont.style.pointerEvents = ok?'':'none'; cont.style.opacity = ok?'':'.5';
+    cont.setAttribute('aria-disabled', ok?'false':'true');
+    ApexKit.renderShell('team');
+  }
+  name.addEventListener('input',sync); num.addEventListener('input',sync);
+  sync();
+})();
+</script>
+</body>
+</html>

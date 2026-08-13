@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קריטריונים למחוון · APEX POC Kit</title>
+<link rel="stylesheet" href="apex-poc-kit.css">
+</head>
+<body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+  <a class="kb-brand" href="index.html" dir="ltr">APEX · POC Kit</a>
+  <div class="kb-steps" data-kb-steps></div>
+  <div class="kb-mobile-progress" data-kb-mobile></div>
+  <div class="kb-utils">
+    <span class="kb-save" data-kb-save style="opacity:.55">נשמר מקומית</span>
+    <button class="kb-util" data-kb-startover type="button">התחלה מחדש</button>
+  </div>
+</div></nav>
+
+<main class="kb-main">
+  <div class="kb-head">
+    <h1 class="kb-title">קריטריונים למחוון</h1>
+    <p class="kb-sub">פרקו את משפט המוצר ל־3&ndash;7 פעולות נצפות, כך שבזירה ניתן יהיה לקבוע בבירור אם כל פעולה עברה או נכשלה.</p>
+  </div>
+
+  <div class="kb-statement-ref">
+    <span class="caps">משפט המוצר שלכם</span>
+    <p id="stmt-ref">&mdash;</p>
+  </div>
+
+  <p class="kb-label" style="margin-bottom:14px;">מה השופט צריך לראות?</p>
+  <div id="rows"></div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between;margin-top:8px;">
+    <button class="kb-btn kb-btn-ghost" id="add" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+      הוספת קריטריון
+    </button>
+    <div class="kb-side" style="max-width:440px;padding:18px 20px;">
+      <p class="kb-label" style="margin-bottom:10px;">כללי ניסוח</p>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0 0 12px;line-height:1.6;">פעולה אחת &middot; ניתנת לצפייה &middot; תוצאה ברורה של עובר / נכשל</p>
+      <p class="kb-label" style="margin-bottom:10px;">אופן הפעולה</p>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0;line-height:1.6;"><b>ידני</b> — אדם מפעיל את הפעולה. <b>אוטונומי</b> — המערכת מבצעת את הפעולה בעצמה. סיווג לתיעוד בלבד; אינו משנה את הניקוד.</p>
+    </div>
+  </div>
+</main>
+
+<div class="kb-foot"><div class="kb-foot-inner">
+  <a class="kb-btn kb-btn-ghost" href="statement.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    חזרה למשפט המוצר
+  </a>
+  <a class="kb-btn kb-btn-primary" id="continue" href="review.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+    המשך לבדיקה
+  </a>
+</div></div>
+
+<div class="kb-modal" data-kb-modal><div class="kb-modal-box">
+  <h3>להתחיל מחדש?</h3>
+  <p>הפעולה תמחק את ערכת ה<span class="mixed-term">־<span class="latin-term">POC</span></span> שנשמרה בדפדפן הזה.</p>
+  <div class="kb-modal-actions">
+    <button class="kb-btn kb-btn-ghost" data-kb-cancel type="button">ביטול</button>
+    <button class="kb-btn kb-btn-primary" data-kb-confirm type="button">מחיקת הערכה</button>
+  </div>
+</div></div>
+
+<script src="apex-poc-kit.js"></script>
+<script>
+(function(){
+  const wrap=document.getElementById('rows'), addBtn=document.getElementById('add'), cont=document.getElementById('continue');
+  let crit = ApexKit.get().criteria.slice();
+  let showErrors = false;
+  document.getElementById('stmt-ref').textContent = ApexKit.get().statement || '(עדיין אין משפט מוצר — הוסיפו אותו בשלב "משפט המוצר")';
+
+  function persist(){ ApexKit.save({criteria:crit}); refreshContinue(); ApexKit.renderShell('criteria'); }
+  function refreshContinue(){
+    const ok = ApexKit.complete('criteria');
+    cont.style.pointerEvents = ok?'':'none'; cont.style.opacity = ok?'':'.5';
+    cont.setAttribute('aria-disabled', ok?'false':'true');
+  }
+  function pad(n){ return n<10?'0'+n:''+n; }
+
+  function render(){
+    wrap.innerHTML='';
+    crit.forEach((c,i)=>{
+      const noText = !c.text.trim();
+      const noType = !(c.type==='manual'||c.type==='autonomous');
+      const bad = showErrors && (noText||noType);
+      const msg = noText ? ('חסר ניסוח לקריטריון '+pad(i+1)+'.') : ('בחרו אם קריטריון '+pad(i+1)+' הוא ידני או אוטונומי.');
+      const row=document.createElement('div');
+      row.className='kb-crit'+(bad?' invalid':'');
+      row.innerHTML =
+        '<div class="kb-crit-move">'+
+          '<button class="kb-move up" type="button" aria-label="הזזה למעלה" '+(i===0?'disabled':'')+'><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"></path></svg></button>'+
+          '<button class="kb-move down" type="button" aria-label="הזזה למטה" '+(i===crit.length-1?'disabled':'')+'><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></button>'+
+        '</div>'+
+        '<div class="kb-crit-num">'+pad(i+1)+'</div>'+
+        '<div class="kb-crit-main"><input class="kb-input" type="text" style="text-align:right;" placeholder="לדוגמה: המערכת מזהה את הלוחות הסולאריים הזמינים בתמונה." value="'+c.text.replace(/"/g,'&quot;')+'">'+
+          (bad?'<p class="kb-crit-err" style="margin-right:0;margin-left:0;">'+msg+'</p>':'')+
+        '</div>'+
+        '<div class="kb-crit-seg"><button class="kb-seg-btn m'+(c.type==='manual'?' on':'')+'" type="button">ידני</button><button class="kb-seg-btn a'+(c.type==='autonomous'?' on':'')+'" type="button">אוטונומי</button></div>'+
+        (i>=3?'<button class="kb-crit-del" type="button" aria-label="הסרת קריטריון"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"></path></svg></button>':'<div style="width:36px;flex:0 0 auto;"></div>');
+      row.querySelector('.kb-crit-main .kb-input').addEventListener('input',e=>{ crit[i].text=e.target.value; persist(); });
+      row.querySelector('.kb-seg-btn.m').addEventListener('click',()=>{ crit[i].type='manual'; render(); persist(); });
+      row.querySelector('.kb-seg-btn.a').addEventListener('click',()=>{ crit[i].type='autonomous'; render(); persist(); });
+      row.querySelector('.up').addEventListener('click',()=>{ if(i>0){ [crit[i-1],crit[i]]=[crit[i],crit[i-1]]; render(); persist(); } });
+      row.querySelector('.down').addEventListener('click',()=>{ if(i<crit.length-1){ [crit[i+1],crit[i]]=[crit[i],crit[i+1]]; render(); persist(); } });
+      const del=row.querySelector('.kb-crit-del'); if(del) del.addEventListener('click',()=>{ if(crit.length>3){ crit.splice(i,1); render(); persist(); } });
+      wrap.appendChild(row);
+    });
+    if(crit.length>=7){ addBtn.disabled=true; addBtn.style.opacity='.5'; addBtn.style.pointerEvents='none'; addBtn.title='הגעתם למקסימום של 7 קריטריונים.'; }
+    else { addBtn.disabled=false; addBtn.style.opacity=''; addBtn.style.pointerEvents=''; addBtn.title=''; }
+  }
+  addBtn.addEventListener('click',()=>{ if(crit.length<7){ crit.push({text:'',type:''}); render(); persist(); } });
+  cont.addEventListener('click',e=>{ if(!ApexKit.complete('criteria')){ e.preventDefault(); showErrors=true; render(); } });
+  render(); refreshContinue(); ApexKit.renderShell('criteria');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>משפט תיאור המוצר · APEX POC Kit</title>
+<link rel="stylesheet" href="apex-poc-kit.css">
+</head>
+<body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+  <a class="kb-brand" href="index.html" dir="ltr">APEX · POC Kit</a>
+  <div class="kb-steps" data-kb-steps></div>
+  <div class="kb-mobile-progress" data-kb-mobile></div>
+  <div class="kb-utils">
+    <span class="kb-save" data-kb-save style="opacity:.55">נשמר מקומית</span>
+    <button class="kb-util" data-kb-startover type="button">התחלה מחדש</button>
+  </div>
+</div></nav>
+
+<main class="kb-main">
+  <div class="kb-head">
+    <h1 class="kb-title">משפט תיאור המוצר</h1>
+    <p class="kb-sub">כתבו במשפט אחד מה המוצר שלכם עושה בפועל בזמן ההרצה בזירת ה<span class="mixed-term">־<span class="latin-term">POC</span></span>.</p>
+  </div>
+
+  <div class="kb-grid">
+    <div>
+      <div class="kb-field" style="margin-bottom:0;">
+        <label class="kb-label" for="stmt">משפט המוצר</label>
+        <textarea class="kb-textarea" id="stmt" style="text-align:right;" placeholder="לדוגמה: המערכת מזהה לוחות סולאריים פנויים, מחשבת את השטח הזמין ומפיקה דוח התקנה."></textarea>
+        <p class="kb-count" id="count">0 / 20 מילים</p>
+        <p class="kb-err" id="err" style="display:none;">משפט המוצר חורג מ־20 מילים.</p>
+      </div>
+      <details class="kb-collapse">
+        <summary>לדוגמה
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <div class="kb-collapse-body">
+          <p style="margin:0 0 12px;"><b>פחות טוב:</b> &rdquo;מערכת חכמה וחדשנית שמשפרת את תכנון האנרגיה הסולארית.&ldquo;</p>
+          <p style="margin:0;"><b>טוב יותר:</b> &rdquo;המערכת מזהה לוחות סולאריים פנויים, מחשבת את השטח הזמין ומפיקה דוח התקנה.&ldquo;</p>
+        </div>
+      </details>
+    </div>
+
+    <aside class="kb-side">
+      <h3>עקרונות מנחים</h3>
+      <div class="kb-side-item"><span class="kb-side-num">1</span><div><h4>פעולה ברורה</h4><p>כתבו מה המוצר עושה בפועל.</p></div></div>
+      <div class="kb-side-item"><span class="kb-side-num">2</span><div><h4>ניתן לצפייה</h4><p>השופט צריך להיות מסוגל לראות שהפעולה התרחשה.</p></div></div>
+      <div class="kb-side-item"><span class="kb-side-num">3</span><div><h4>תוצאה, לא טכנולוגיה</h4><p>תארו מה המוצר עושה או מפיק בזמן ההרצה — לא את הקוד, מודל ה<span class="mixed-term">־<span class="latin-term">AI</span></span> או הכלים שמאחוריו.</p></div></div>
+    </aside>
+  </div>
+</main>
+
+<div class="kb-foot"><div class="kb-foot-inner">
+  <a class="kb-btn kb-btn-ghost" href="map.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    חזרה למפת הזירה
+  </a>
+  <a class="kb-btn kb-btn-primary" id="continue" href="criteria.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+    המשך לקריטריונים
+  </a>
+</div></div>
+
+<div class="kb-modal" data-kb-modal><div class="kb-modal-box">
+  <h3>להתחיל מחדש?</h3>
+  <p>הפעולה תמחק את ערכת ה<span class="mixed-term">־<span class="latin-term">POC</span></span> שנשמרה בדפדפן הזה.</p>
+  <div class="kb-modal-actions">
+    <button class="kb-btn kb-btn-ghost" data-kb-cancel type="button">ביטול</button>
+    <button class="kb-btn kb-btn-primary" data-kb-confirm type="button">מחיקת הערכה</button>
+  </div>
+</div></div>
+
+<script src="apex-poc-kit.js"></script>
+<script>
+(function(){
+  const ta=document.getElementById('stmt'), count=document.getElementById('count'),
+        err=document.getElementById('err'), cont=document.getElementById('continue');
+  ta.value = ApexKit.get().statement || '';
+  function sync(){
+    const w = ApexKit.wordCount(ta.value);
+    count.textContent = w+' / 20 מילים';
+    count.className = 'kb-count' + (w>20?' error':(w>=17?' caution':''));
+    const over = w>20;
+    err.style.display = over?'flex':'none';
+    ta.classList.toggle('invalid', over);
+    ApexKit.save({statement:ta.value});
+    const ok = ApexKit.complete('statement');
+    cont.style.pointerEvents = ok?'':'none'; cont.style.opacity = ok?'':'.5';
+    cont.setAttribute('aria-disabled', ok?'false':'true');
+    ApexKit.renderShell('statement');
+  }
+  ta.addEventListener('input',sync); sync();
+})();
+</script>
+</body>
+</html>
